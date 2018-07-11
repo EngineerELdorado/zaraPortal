@@ -1,0 +1,71 @@
+<div class="container">
+  <form class="container"  [formGroup] ="myForm" novalidate (ngSubmit)="login(myForm)" autocomplete="off">
+        <!-- <input style="opacity: 0;position: absolute;">
+        <input type="password" style="opacity: 0;position: absolute;"> -->
+      <p class="h5 text-center mb-4">Login</p>
+       <div class="form-group">
+          <input (keydown)="onChange()" type="text" placeholder="Numero De Compte ou Telephone" id="username" class="form-control" formControlName="accountNumber">
+         
+         
+      </div>
+
+      <div class="form-group">
+            
+        <input (keydown)="onChange($event)" type="password" placeholder="pin" id="password" class="form-control" formControlName="pin">
+        <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+       
+    </div>
+      <div class="text-center">
+          <button type="submit" class="btn btn-sm btn-success" [disabled]="myForm.invalid" mdbRippleRadius>Login</button>
+         <!-- <br> <br> <label for="" (click)="showResetPassword()" class="text-center">Forgot My Password</label> -->
+        </div>
+      
+      <!-- <div class="text-center">entered: {{myForm.value}}</div> -->
+  </form>
+  <div *ngIf="wrong" class="text-center"> <label for="" class="alert alert-danger">Wrong UserName Or Password</label> </div>
+  
+  </div>
+  <div class="text-center">
+        <label for="" *ngIf="logout_msg|async" class="alert alert-success">{{logout_msg|async}}</label>
+  </div>
+  
+  
+ 
+
+
+  <div mdbModal #resetPasswordModal="mdb-modal" (onHidden)="hide()"  class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center" id="myModalLabel">Reset My Password</h4>
+              
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <form class="container" [formGroup]="resetForm" novalidate (ngSubmit)="resetPassword(resetForm)">
+               <div class="md-form">
+                    <input (keyup)="retry()" type="email" placeholder="Enter your email "  class="form-control" formControlName="email">
+                    
+                   
+                </div>
+
+              
+                
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button [disabled]="resetForm.invalid" type="button" class="btn btn-sm btn-info btn-sm waves-light" data-dismiss="modal" (click)="resetPassword(resetForm)" mdbRippleRadius>Change</button>
+                <button type="button" class="btn btn-sm btn-default btn-sm waves-light" data-dismiss="modal" (click)="hide()" mdbRippleRadius>Cancel</button>
+            </div>
+            
+            <div *ngIf="emailSent" class="text-center"> <label for="" class="alert alert-success">We have sent you an email with the link to reset your password</label> </div>
+            <div *ngIf="emailWrong" for="" class="alert alert-danger">Email Not Found</div>
+            <div *ngIf="isLoading" class="text-center"><app-circular-loading></app-circular-loading></div>
+        </div>
+    </div>
+</div>
+  
+  

@@ -1,0 +1,12 @@
+#transferForm{
+    padding: 50px
+}
+.alert alert-danger{
+    background-color: red;
+    color: white
+}
+
+.alert alert-danger{
+    background-color: green;
+    color: white
+}
