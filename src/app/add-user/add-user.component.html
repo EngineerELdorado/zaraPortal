@@ -5,31 +5,26 @@
 <label class="text-center" for="" *ngIf='errorResponse' class="alert alert-danger" id="errorResponse">An Error Has Occured</label>
 <label class="text-center" for="" *ngIf='successResponse' class="alert alert-success" id="successResponse">Transfert Reussi</label>
  <div class="form-group">
-    <input disabled (keydown)="onChange()" type="text" placeholder="Ton Numero De Compte ou Telephone" id="accno" class="form-control" formControlName="sender">
+    <input (keydown)="onChange()" type="text" placeholder="Nom Complet" id="accno" class="form-control" formControlName="fullName">
    
    
 </div>
 
 <div class="form-group">
-  <label for="receiver">Beneficiaire</label>
+ 
   <int-phone-prefix [locale]="'fr'"
   [defaultCountry]="'cd'"
-                    formControlName="receiver"  id="receiver" class="form-control"></int-phone-prefix>
- 
+                    formControlName="phone"  id="receiver" class="form-control"></int-phone-prefix>
+
 </div>
 
 <div class="form-group">
-  <input autocomplete="false" (keydown)="onChange()" type="text" placeholder="Montant"  class="form-control" formControlName="amount">
- 
- 
+  <select name="" class="form-control" formControlName="role">
+    <option value="">Role</option>
+    <option *ngFor="let role of roles" value="{{role.name}}">{{role.name|role}}</option>
+  </select>
 </div>
 
-<div class="form-group">
-  
-  <input autocomplete="false" (keydown)="onChange($event)" type="password" placeholder="pin"  class="form-control" formControlName="pin">
-  <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
- 
-</div>
 <div class="text-center">
     <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" mdbRippleRadius>Effectuer Le Transfer</button>
    <!-- <br> <br> <label for="" (click)="showResetPassword()" class="text-center">Forgot My Password</label> -->

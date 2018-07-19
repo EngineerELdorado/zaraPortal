@@ -19,7 +19,11 @@ import { SendComponent } from './send/send.component';
 import { SettingsComponent } from './settings/settings.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule}from "@angular/platform-browser/animations"
+import {BrowserAnimationsModule}from "@angular/platform-browser/animations";
+import { AddUserComponent } from './add-user/add-user.component';
+import { BoolPipe } from './bool.pipe';
+import { InternationalPhoneModule } from 'ng4-intl-phone';
+import { UserDetailsComponent } from './user-details/user-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,13 +37,17 @@ import {BrowserAnimationsModule}from "@angular/platform-browser/animations"
     RolePipe,
     LoginComponent,
     SendComponent,
-    SettingsComponent
+    SettingsComponent,
+    AddUserComponent,
+    BoolPipe,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    InternationalPhoneModule,
     RouterModule,
     NgbModule.forRoot(),
     MDBBootstrapModule.forRoot(),
@@ -50,7 +58,7 @@ import {BrowserAnimationsModule}from "@angular/platform-browser/animations"
     }),
     BrowserAnimationsModule
   ],
-  entryComponents:[SendComponent],
+  entryComponents:[SendComponent, AddUserComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]

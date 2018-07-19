@@ -9,5 +9,8 @@ export interface User{
     balance:number,
     verified:boolean,
     verificationCode:string,
-    roles:Role[]
+    roles:Role[];
+    needToChangePin:boolean;
+    tempPin:string;
+    isLocked:boolean;
 }

@@ -7,12 +7,11 @@
           <th>#</th>
           <th>Nom</th>
           <th>Role</th>
-          <th>Agent Number</th>
           <th>Tel No</th>
-          <th>Numero De Compte</th>
           <th>Verified</th>
-          <th>Verification Code</th>
           <th>Balance</th>
+          <th>Changer Pin</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -20,12 +19,14 @@
           <td>{{i+1}}</td>
           <td>{{user.fullName}}</td>
           <td class="hidden-sm"><label for="" *ngFor="let role of user.roles"> {{ role?.name |role }} </label> </td>
-          <td>{{user.agentNumber}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.accountNumber}}</td>
+          
+          <td>+{{user.phone}}</td>
           <td>{{user.verified|verified}}</td>
-          <td>{{user.verificationCode}}</td>
           <td>{{user.balance}}</td>
+          <td>{{user.needToChangePin|bool}}</td>
+          <td>
+              <button [routerLink]="['/user', user.accountNumber]" class="btn btn-sm btn-info waves-light" >View / Edit</button>
+          </td>
         </tr>
       </tbody>
     </table>

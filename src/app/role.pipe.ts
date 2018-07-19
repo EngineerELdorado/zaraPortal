@@ -17,6 +17,8 @@ export class RolePipe implements PipeTransform {
       return "Agent";
     }else if(value==="ROLE_USER"){
       return "User";
+    }else if(value==="ROLE_MASS_PAYER"){
+      return "Mass Payer";
     }
     return value;
   }

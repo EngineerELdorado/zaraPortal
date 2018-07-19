@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SendComponent } from './send/send.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,11 @@ export class AppComponent implements OnInit {
  openTransferWindow(){
   const modalRef = this.modalService.open(SendComponent);
   modalRef.componentInstance.name = 'Transfer';
+ }
+
+ openAddUserModal(){
+  const modalRef = this.modalService.open(AddUserComponent);
+  modalRef.componentInstance.name = 'AddUser';
  }
 }
 

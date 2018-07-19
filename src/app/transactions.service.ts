@@ -15,6 +15,10 @@ export class TransactionsService {
     return this.http.get<Transaction[]>(this.constants.BACKEND_URL+"/transactions/getAll", {observe: 'response'});
   }
 
+  public getMiniStatement(id){
+    return this.http.get<Transaction[]>(this.constants.BACKEND_URL+"/transactions/ministatement/"+id, {observe: 'response'});
+  }
+
   public adminTransfer(request:TransactionRequest){
   
                 return this.http.post(this.constants.BACKEND_URL+"/transactions/adminTransfer",request,{observe:'response'})

@@ -30,7 +30,7 @@ export class SendComponent implements OnInit {
       pin: new FormControl('', Validators.required)
     });
     this.myForm.patchValue({
-      sender:localStorage.getItem("phone")
+      sender:"+"+localStorage.getItem("phone")
     })
   }
 
