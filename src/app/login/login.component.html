@@ -1,5 +1,8 @@
-<div class="container">
-  <form class="container"  [formGroup] ="myForm" novalidate (ngSubmit)="login(myForm)" autocomplete="off">
+<div class="loginPage">
+<div class="container row ">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+  <form class="form container col-md-4"  [formGroup] ="myForm" novalidate (ngSubmit)="login(myForm)" autocomplete="off">
         <!-- <input style="opacity: 0;position: absolute;">
         <input type="password" style="opacity: 0;position: absolute;"> -->
       <p class="h5 text-center mb-4">Login</p>
@@ -15,15 +18,15 @@
         <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
        
     </div>
-      <div class="text-center">
-          <button type="submit" class="btn btn-sm btn-success" [disabled]="myForm.invalid" mdbRippleRadius>Login</button>
-         <!-- <br> <br> <label for="" (click)="showResetPassword()" class="text-center">Forgot My Password</label> -->
+      <div class="">
+          <button type="submit" class="btn btn-sm btn-success col-md-12" [disabled]="myForm.invalid" mdbRippleRadius>Login</button>
+         
+          <div *ngIf="wrong" class="text-center">  <br><label for="" class="alert alert-danger">Numero Ou Pin Incorrect</label> </div>
         </div>
       
       <!-- <div class="text-center">entered: {{myForm.value}}</div> -->
-  </form>
-  <div *ngIf="wrong" class="text-center"> <label for="" class="alert alert-danger">Wrong UserName Or Password</label> </div>
-  
+  </form><br>
+ 
   </div>
   <div class="text-center">
         <!-- <label for=""  class="alert alert-success"></label> -->
@@ -67,5 +70,7 @@
         </div>
     </div>
 </div>
+</div>
+
   
   

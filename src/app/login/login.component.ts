@@ -7,6 +7,7 @@ import { ConstantsService } from '../constants.service';
 import { AuthService } from '../auth.service';
 import * as jwt_decode from "jwt-decode";
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,13 +21,14 @@ export class LoginComponent implements OnInit {
   decoded_token:any;
   user_id:any;
   token_expiration: any;
-  wrong:boolean;
+  wrong:boolean=false;
   emailSent=false;
   isLoading:boolean=false;
   roles:any;
   emailWrong:boolean=false;
-
-  constructor(private authService: AuthService, 
+  responseMsg;
+  constructor(private authService: AuthService,
+    private toastr: ToastrService, 
     private constants: ConstantsService,
     private router:Router,
     private userService:UserService,
@@ -34,7 +36,8 @@ export class LoginComponent implements OnInit {
 
   @ViewChild("resetPasswordModal")resetPwModal;
   ngOnInit() {
-
+    console.log(this.wrong)
+    
     this.myForm= new FormGroup({
       accountNumber: new FormControl('', Validators.required),
       pin: new FormControl('', Validators.required)
@@ -60,7 +63,7 @@ export class LoginComponent implements OnInit {
 
    onChange()
    {
-     this.wrong=null;
+     this.wrong=false;
      
    }
 
@@ -101,29 +104,53 @@ export class LoginComponent implements OnInit {
         accountNumber: form.value.accountNumber.substring(1),
         pin:form.value.pin
      }
-     console.log(user)
+    
      this.authService.login(user).subscribe(res=>{
-       console.log(res.headers)
+      console.log(res.status)
        
          localStorage.setItem("authenticated", "yes");
          localStorage.setItem("zara_token", res.headers.get("Authorization"));
          this.decoded_token=jwt_decode(res.headers.get("Authorization").substring(6))
           this.user_id = this.decoded_token.sub
-          console.log(this.decoded_token)
-          this.userService.getUserByAccountNumber(this.user_id).subscribe(res=>{
+         
+          this.userService.getUserByAccountNumber(this.user_id).subscribe((res)=>{
             console.log(res.body)
             localStorage.setItem("fullName", res.body.fullName)
             localStorage.setItem("phone", res.body.phone)
             localStorage.setItem("id", res.body.id)
-          },err=>{
-
-          },()=>{
+            this.wrong=false;
+            this.responseMsg="Bienvenu "+localStorage.getItem("fullName");
+            this.showSuccess();
             window.location.href = this.constants.FRONTEND_URL;
+            
+          },(err:HttpErrorResponse)=>{
+         
+            
+               
+          },()=>{
+            //alert();
           })
           
         
-     },err=>{
-        console.log(err)
+     },(err:HttpErrorResponse)=>{
+      if(err.error.status===401){
+        this.responseMsg="Echec \n Numero ou pin Incorrect";
+        this.showError();
+        
+      }
+      else{
+        this.responseMsg="Echec \n"+err.message
+        this.showError();
+      }
+      
      });
+     
    }
+
+   showSuccess() {
+    this.toastr.success(this.responseMsg, 'REUSSI');
+  }
+  showError() {
+    this.toastr.error(this.responseMsg, 'ECHEC');
+  }
 }

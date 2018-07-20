@@ -25,6 +25,7 @@ import { BoolPipe } from './bool.pipe';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,7 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
   ],
   entryComponents:[SendComponent, AddUserComponent, VerifyCodeComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
