@@ -7,6 +7,7 @@ import * as jwt_decode from "jwt-decode";
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { UserService } from './user.service';
 import { FormGroup } from '@angular/forms';
+import { ConstantsService } from './constants.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,14 +20,16 @@ export class AppComponent implements OnInit {
   isVerified:boolean;
   myForm:FormGroup;
   constructor(private router: Router,
+    private constants:ConstantsService,
      private userService:UserService,
      private modalService: NgbModal){
    
   }
 
  ngOnInit(){
-  this.decoded_token=jwt_decode(localStorage.getItem("zara_token").substring(6))
-  console.log(this.decoded_token)
+  if(localStorage.getItem("zara_token")!==null){
+    this.decoded_token=jwt_decode(localStorage.getItem("zara_token").substring(6))
+    console.log(this.decoded_token)
   this.userService.checkVerify(this.decoded_token.sub).subscribe(res=>{
     console.log(res)
     if(res.headers.get("response_message")==="no"){
@@ -35,11 +38,23 @@ export class AppComponent implements OnInit {
     
   })
   if(localStorage.getItem("authenticated")==="yes"){
-    this.isLoggedIn=true
+    this.isLoggedIn=true;
+    console.log("authenticated")
   }else{
-    this.router.navigate(["/login"])
+    console.log("non authenticated")
+    localStorage.clear();
+    window.location.href = this.constants.FRONTEND_URL+"/login";
     
   }
+  }
+  else{
+    console.log("non authenticated")
+    localStorage.clear();
+    window.location.href = this.constants.FRONTEND_URL+"/login";
+    
+  }
+  
+  
  }
 
  openTransferWindow(){
