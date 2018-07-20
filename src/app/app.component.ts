@@ -43,14 +43,14 @@ export class AppComponent implements OnInit {
   }else{
     console.log("non authenticated")
     localStorage.clear();
-    window.location.href = this.constants.FRONTEND_URL+"/login";
+    this.router.navigate["/login"]
     
   }
   }
   else{
     console.log("non authenticated")
     localStorage.clear();
-    window.location.href = this.constants.FRONTEND_URL+"/login";
+    this.router.navigate["/login"]
     
   }
   
