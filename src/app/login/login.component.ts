@@ -9,6 +9,7 @@ import * as jwt_decode from "jwt-decode";
 import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Role } from '../role/Role';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -110,20 +111,40 @@ export class LoginComponent implements OnInit {
      this.authService.login(user).subscribe(res=>{
       console.log(res.status)
        
-         localStorage.setItem("authenticated", "yes");
-         localStorage.setItem("zara_token", res.headers.get("Authorization"));
-         this.decoded_token=jwt_decode(res.headers.get("Authorization").substring(6))
+         this.encoded_token=res.headers.get("Authorization").substring(6)
+         this.decoded_token=jwt_decode(this.encoded_token);
           this.user_id = this.decoded_token.sub
          
           this.userService.getUserByAccountNumber(this.user_id).subscribe((res)=>{
             console.log(res.body)
-            localStorage.setItem("fullName", res.body.fullName)
+            
+            this.wrong=false;
+           console.log(res.body.roles.toString())
+           let roles = JSON.stringify(res.body.roles);
+           
+        
+         
+             console.log(roles)
+            if(roles.includes("ROLE_ADMIN")
+            || roles.includes("ROLE_SUPERADMIN")){
+         
+              localStorage.setItem("zara_token", this.encoded_token)
+              localStorage.setItem("fullName", res.body.fullName)
             localStorage.setItem("phone", res.body.phone)
             localStorage.setItem("id", res.body.id)
-            this.wrong=false;
+            
             this.responseMsg="Bienvenu "+localStorage.getItem("fullName");
-            this.showSuccess();
-            window.location.href = this.constants.FRONTEND_URL;
+            localStorage.setItem("authenticated", "yes");
+              this.showSuccess();
+              window.location.href = this.constants.FRONTEND_URL;
+            }
+            else{
+              this.responseMsg="Desole "+res.body.fullName+" ce site est uniquement pour l'admin";
+              this.showError();
+            }
+         
+            
+            
             
           },(err:HttpErrorResponse)=>{
          
