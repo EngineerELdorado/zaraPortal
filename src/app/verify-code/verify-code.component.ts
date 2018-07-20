@@ -33,7 +33,7 @@ export class VerifyCodeComponent implements OnInit {
     })
   }
 
-  resendCode(form:FormGroup){
+  resendCode(){
     this.userService.resendCode(localStorage.getItem("phone")).subscribe(res=>{
       this.responseMsg=res.headers.get("response_message")
       this.showSuccess()
@@ -51,6 +51,6 @@ export class VerifyCodeComponent implements OnInit {
   }
 
   onChange(){
-    
+
   }
 }
