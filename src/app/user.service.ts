@@ -38,4 +38,20 @@ export class UserService {
     params=  params.append("doneBy",by)
     return this.http.get(this.constants.BACKEND_URL+"/users/lockUnlock", {observe:'response', params:params});
    }
+
+   public checkVerify(accountNumber){
+    return this.http.get(this.constants.BACKEND_URL+"/users/checkVerified/"+accountNumber, {observe:'response'});
+   }
+
+   public verifyAccount(accountNumber, code){
+    let params = new HttpParams();
+    params=  params.append("accountNumber", accountNumber);
+    params=  params.append("verificationCode",code)
+    return this.http.get(this.constants.BACKEND_URL+"/users/verifyAccount", {observe:'response', params:params});
+   }
+
+   public resendCode(accountNumber){
+    return this.http.get(this.constants.BACKEND_URL+"/users/resendVerificationCode/"+accountNumber, {observe:'response'});
+   }
+   
 }

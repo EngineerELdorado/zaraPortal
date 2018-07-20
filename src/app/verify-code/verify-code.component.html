@@ -1,0 +1,19 @@
+<form  autocomplete="false" id="transferForm" class="container text-center"  [formGroup] ="myForm" novalidate (ngSubmit)="verifyCode(myForm)" autocomplete="off">
+ 
+
+<div class="form-group">
+  <label for="receiver">Code de verification</label>
+</div>
+<div class="form-group">
+  
+  <input autocomplete="false" (keydown)="onChange($event)" type="text" placeholder="Code de verification"  class="form-control" formControlName="code">
+  <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+ 
+</div>
+<div class="text-center">
+    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" mdbRippleRadius>Verifier Code</button>
+  <br><br> <a for="" (click)="resendCode()" class="text-center">Renvoyez moi le code de verification</a>
+  <br><br></div>
+
+<!-- <div class="text-center">entered: {{myForm.value}}</div> -->
+</form>
