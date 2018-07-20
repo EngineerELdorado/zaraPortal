@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   isLoading:boolean=false;
   roles:any;
   emailWrong:boolean=false;
-  
+
   constructor(private authService: AuthService, 
     private constants: ConstantsService,
     private router:Router,
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 
   
 
-   onChange(event)
+   onChange()
    {
      this.wrong=null;
      
