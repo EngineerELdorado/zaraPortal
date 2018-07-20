@@ -6,6 +6,7 @@ import { Role } from '../role/Role';
 import { UserService } from '../user.service';
 import { User } from '../user/User';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-user',
@@ -21,7 +22,9 @@ export class AddUserComponent implements OnInit {
   user:User;
   responseMsg:string;
   constructor(
-    private toastr: ToastrService,public activeModal: NgbActiveModal,
+    private toastr: ToastrService,
+    public activeModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
     private userService:UserService,
      private roleService: RoleService) { }
 
@@ -42,6 +45,7 @@ export class AddUserComponent implements OnInit {
   }
   post(myForm:FormGroup){
     console.log(myForm.value)
+    this.spinner.show();
     this.userService.addUser(myForm.value, myForm.value.role).subscribe(res=>{
 
       this.responseMsg=res.headers.get("response_message")
@@ -56,9 +60,11 @@ export class AddUserComponent implements OnInit {
   }
 
   showSuccess() {
+    this.spinner.hide();
     this.toastr.success(this.responseMsg, 'REUSSI');
   }
   showError() {
+    this.spinner.hide();
     this.toastr.error(this.responseMsg, 'ECHEC');
   }
 

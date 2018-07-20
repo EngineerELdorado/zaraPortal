@@ -5,6 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Transaction } from '../transaction/Transaction';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-send',
@@ -19,6 +20,7 @@ export class SendComponent implements OnInit {
   responseMsg:string;
   constructor(
     private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private transactionService:TransactionsService,
     public activeModal: NgbActiveModal) { }
 
@@ -40,6 +42,7 @@ export class SendComponent implements OnInit {
   }
 
   post(myForm:FormGroup){
+    this.spinner.show();
     this.transactionService.adminTransfer(myForm.value).subscribe(res=>{
   
   
@@ -64,9 +67,11 @@ export class SendComponent implements OnInit {
   }
   
   showSuccess() {
+    this.spinner.hide();
     this.toastr.success(this.responseMsg, 'REUSSI');
   }
   showError() {
+    this.spinner.hide();
     this.toastr.error(this.responseMsg, 'ECHEC');
   }
 }
