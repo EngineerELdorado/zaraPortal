@@ -24,6 +24,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { BoolPipe } from './bool.pipe';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { VerifyCodeComponent } from './verify-code/verify-code.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     SettingsComponent,
     AddUserComponent,
     BoolPipe,
-    UserDetailsComponent
+    UserDetailsComponent,
+    VerifyCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     }),
     BrowserAnimationsModule
   ],
-  entryComponents:[SendComponent, AddUserComponent],
+  entryComponents:[SendComponent, AddUserComponent, VerifyCodeComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]

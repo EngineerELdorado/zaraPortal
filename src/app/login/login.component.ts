@@ -95,15 +95,20 @@ export class LoginComponent implements OnInit {
    }
 
    login(form:FormGroup){
-     //console.log(form.value)
-     this.authService.login(form.value).subscribe(res=>{
+     
+    let user={
+        accountNumber: form.value.accountNumber.substring(1),
+        pin:form.value.pin
+     }
+     console.log(user)
+     this.authService.login(user).subscribe(res=>{
        console.log(res.headers)
        
          localStorage.setItem("authenticated", "yes");
          localStorage.setItem("zara_token", res.headers.get("Authorization"));
          this.decoded_token=jwt_decode(res.headers.get("Authorization").substring(6))
           this.user_id = this.decoded_token.sub
-          console.log(this.user_id)
+          console.log(this.decoded_token)
           this.userService.getUserByAccountNumber(this.user_id).subscribe(res=>{
             console.log(res.body)
             localStorage.setItem("fullName", res.body.fullName)
