@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 import * as jwt_decode from "jwt-decode";
 import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   responseMsg;
   constructor(private authService: AuthService,
     private toastr: ToastrService, 
+    private spinner: NgxSpinnerService,
     private constants: ConstantsService,
     private router:Router,
     private userService:UserService,
@@ -99,7 +101,7 @@ export class LoginComponent implements OnInit {
    }
 
    login(form:FormGroup){
-     
+     this.spinner.show();
     let user={
         accountNumber: form.value.accountNumber.substring(1),
         pin:form.value.pin
@@ -134,12 +136,12 @@ export class LoginComponent implements OnInit {
         
      },(err:HttpErrorResponse)=>{
       if(err.error.status===401){
-        this.responseMsg="Echec \n Numero ou pin Incorrect";
+        this.responseMsg=" Numero ou pin Incorrect";
         this.showError();
         
       }
       else{
-        this.responseMsg="Echec \n"+err.message
+        this.responseMsg=""+err.message
         this.showError();
       }
       
@@ -148,9 +150,11 @@ export class LoginComponent implements OnInit {
    }
 
    showSuccess() {
+     this.spinner.hide();
     this.toastr.success(this.responseMsg, 'REUSSI');
   }
   showError() {
+    this.spinner.hide();
     this.toastr.error(this.responseMsg, 'ECHEC');
   }
 }

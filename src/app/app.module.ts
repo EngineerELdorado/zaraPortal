@@ -26,6 +26,7 @@ import { InternationalPhoneModule } from 'ng4-intl-phone';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { AuthGuard } from './auth.guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { AuthGuard } from './auth.guard';
     AppRoutingModule,
     InternationalPhoneModule,
     RouterModule,
+    NgxSpinnerModule,
     NgbModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot({
