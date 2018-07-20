@@ -50,4 +50,7 @@ export class VerifyCodeComponent implements OnInit {
     this.toastr.error(this.responseMsg, 'ECHEC');
   }
 
+  onChange(){
+    
+  }
 }
