@@ -58,7 +58,7 @@
 </div>
 <br>
 <div class="text-center">
-  <button (click)="resetPin()">Reinitialiser le Pin</button>
+  <button (click)="resetPin()" class="btn btn-default"  style="margin-right: 5px">Reinitialiser le Pin</button>
   <button *ngIf="!isLocked" class="btn btn-danger" (click)="openSm(content)">Bloquer ce compte</button>
   <button *ngIf="isLocked" class="btn btn-warning" (click)="openSm(content)">Debloquer ce compte</button>
 </div>
