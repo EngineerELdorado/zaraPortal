@@ -54,4 +54,14 @@ export class UserService {
     return this.http.get(this.constants.BACKEND_URL+"/users/resendVerificationCode/"+accountNumber, {observe:'response'});
    }
    
+   public changePin(changePinRequest,accountNumber){
+    return this.http.post(this.constants.BACKEND_URL+"/users/changePin/"+accountNumber, changePinRequest,{observe:'response'})
+   }
+
+   public resetPin(accountNumber){
+    return this.http.get(this.constants.BACKEND_URL+"/users/resetPin/"+accountNumber,{observe:'response'})
+   }
+
+
+   
 }

@@ -7,6 +7,7 @@ import * as jwt_decode from "jwt-decode";
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { UserService } from './user.service';
 import { FormGroup } from '@angular/forms';
+import { ChangePinComponent } from './change-pin/change-pin.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
   }
 
  ngOnInit(){
+   
   if(localStorage.getItem("zara_token")!==null){
     this.decoded_token=jwt_decode(localStorage.getItem("zara_token").substring(6))
   console.log(this.decoded_token)
@@ -56,7 +58,14 @@ export class AppComponent implements OnInit {
 
  openVerificationCodeModal(){
   const modalRef = this.modalService.open(VerifyCodeComponent);
+  
   modalRef.componentInstance.name = 'VerificationCode';
+ }
+
+ openChangePinModal(){
+  const modalRef = this.modalService.open(ChangePinComponent);
+  
+  modalRef.componentInstance.name = 'Change Pin';
  }
 }
 

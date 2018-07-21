@@ -27,6 +27,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ChangePinComponent } from './change-pin/change-pin.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AddUserComponent,
     BoolPipe,
     UserDetailsComponent,
-    VerifyCodeComponent
+    VerifyCodeComponent,
+    ChangePinComponent
   ],
   imports: [
     BrowserModule,
@@ -53,17 +56,18 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppRoutingModule,
     InternationalPhoneModule,
     RouterModule,
+    AngularFontAwesomeModule,
     NgxSpinnerModule,
     NgbModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 5000,
+      timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
     BrowserAnimationsModule
   ],
-  entryComponents:[SendComponent, AddUserComponent, VerifyCodeComponent],
+  entryComponents:[SendComponent, AddUserComponent, VerifyCodeComponent,ChangePinComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

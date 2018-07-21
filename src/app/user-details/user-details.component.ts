@@ -7,6 +7,7 @@ import { Transaction } from '../transaction/Transaction';
 import { TransactionsService } from '../transactions.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-details',
@@ -93,6 +94,16 @@ update(myform:FormGroup){
        this.responseMsg=err.headers.get("response_message")
        this.showError();
      })
+}
+
+resetPin(){
+  this.userService.resetPin(this.user.accountNumber).subscribe(res=>{
+    this.responseMsg=res.headers.get("response_message")
+    this.showSuccess();
+  },(err:HttpErrorResponse)=>{
+    this.responseMsg=err.error;
+    this.showError();
+  })
 }
 
 showSuccess() {
