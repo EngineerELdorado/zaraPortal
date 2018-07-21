@@ -10,7 +10,7 @@
   <label class="alert alert-primary" *ngIf="needToChangePin">Pin Temporaire: {{user.tempPin}}</label>  
 </div>
 
-<div class="col-md-6 block">
+<div class="col-md-6 block container">
     <h5>Transactions Recentes</h5>
     
     <div class="container">
@@ -38,7 +38,7 @@
         </div>
       </div>
 </div>
-<div class="col md-3 block text-center">
+<div class="col md-3 block text-center container">
     <h5>Proprietaire Du Compte</h5>
     <form (change)="onChange()" autocomplete="false" id="transferForm" class="container text-center"  [formGroup] ="myForm" novalidate (ngSubmit)="update(myForm)" autocomplete="off">
         <div class="row">
