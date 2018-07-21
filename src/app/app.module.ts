@@ -29,7 +29,6 @@ import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ChangePinComponent } from './change-pin/change-pin.component';
-import { CardComponent } from 'ng2-bootstrap-card/ng2-bootstrap-card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +47,7 @@ import { CardComponent } from 'ng2-bootstrap-card/ng2-bootstrap-card';
     BoolPipe,
     UserDetailsComponent,
     VerifyCodeComponent,
-    ChangePinComponent,
-    CardComponent
+    ChangePinComponent
   ],
   imports: [
     BrowserModule,
