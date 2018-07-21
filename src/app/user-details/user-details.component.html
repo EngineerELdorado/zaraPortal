@@ -1,5 +1,6 @@
-<div class="row">
-  <div class="col-md-3 block">
+<div class="container text-center">
+<div class="row container">
+  <div class="col-md-3 block container">
     <h5>Etat Operationnel</h5>
     <label style="color:brown; font-size: 20px; font-style: italic">Balance Actuelle {{user?.balance}} $</label>
   <label *ngIf="isVerified" class="alert alert-success">Numero VerifiE</label><label *ngIf="!isVerified" class="alert alert-warning">Numero non verifiE.</label>
@@ -62,7 +63,7 @@
   <button *ngIf="!isLocked" class="btn btn-danger" (click)="openSm(content)">Bloquer ce compte</button>
   <button *ngIf="isLocked" class="btn btn-warning" (click)="openSm(content)">Debloquer ce compte</button>
 </div>
-
+</div>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Avertissement</h4>

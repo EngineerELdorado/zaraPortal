@@ -4,3 +4,12 @@
 body{
     background-image: url("https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
 }
+.container{
+    background-color: white;
+    padding: 10px;
+    border-style:solid;
+    border-width: medium;
+    border-radius: 5px;
+    border-color: whitesmoke
+
+}

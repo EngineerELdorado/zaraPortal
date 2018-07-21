@@ -135,8 +135,9 @@ export class LoginComponent implements OnInit {
             
             this.responseMsg="Bienvenu "+localStorage.getItem("fullName");
             localStorage.setItem("authenticated", "yes");
+            
+            window.location.href = this.constants.FRONTEND_URL;
               this.showSuccess();
-              window.location.href = this.constants.FRONTEND_URL;
             }
             else{
               this.responseMsg="Desole "+res.body.fullName+" ce site est uniquement pour l'admin";
