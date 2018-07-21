@@ -1,13 +1,26 @@
 .form{
-    margin-right: 10%;
+    
     margin-top:10%;
     padding: 2%;
     background-color: whitesmoke;
+    border-width: 05px;
     border-style: solid;
-    border-radius: 0.2px;
-    border-color:#26a69a;
+    border-radius: 10px;
+    border-color:whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px
 }
 .form button{
     background-color: #26a69a;
-    height: 50px;
+    height: 40px;
+}
+.form p{
+    color: #26a69a
+}
+.col1{
+    font-size: 100px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    margin-left: 5%;
+    margin-top: 15%
 }

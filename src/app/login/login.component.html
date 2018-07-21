@@ -1,38 +1,37 @@
-<div class="loginPage">
-<div class="container row ">
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
-  <form class="form container col-md-4"  [formGroup] ="myForm" novalidate (ngSubmit)="login(myForm)" autocomplete="off">
-        <!-- <input style="opacity: 0;position: absolute;">
-        <input type="password" style="opacity: 0;position: absolute;"> -->
-        <ngx-spinner size = "large"
-        color = "#fff"></ngx-spinner>
-      <p class="h5 text-center mb-4">Acceder Mon Compte</p>
-       <div class="form-group">
-          <int-phone-prefix [locale]="'fr'" [defaultCountry]="'cd'" (keydown)="onChange()" type="text" placeholder="Telephone" id="username" class="form-control" formControlName="accountNumber"></int-phone-prefix>
-         
-         
-      </div>
-
-      <div class="form-group">
+<div class=" row ">
+    <div class="col-md-3 col1">ZaraCash</div>
+    <div class="col-md-3"></div>
+    <div class="col-md-4 form">
+            <form class="container"  [formGroup] ="myForm" novalidate (ngSubmit)="login(myForm)" autocomplete="off">
+                    <!-- <input style="opacity: 0;position: absolute;">
+                    <input type="password" style="opacity: 0;position: absolute;"> -->
+                    <ngx-spinner size = "large"
+                    color = "#fff"></ngx-spinner>
+                  <p class="h5 text-center mb-4">Acceder Mon Compte</p>
+                   <div class="form-group">
+                      <int-phone-prefix [locale]="'fr'" [defaultCountry]="'cd'" (keydown)="onChange()" type="text" placeholder="Telephone" id="username" class="form-control" formControlName="accountNumber"></int-phone-prefix>
+                     
+                     
+                  </div>
             
-        <input (keydown)="onChange()" type="password" placeholder="pin" id="password" class="form-control" formControlName="pin">
-        <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
-       
-    </div>
-      <div class="">
-          <button type="submit" class="btn btn-sm btn-success col-md-12" [disabled]="myForm.invalid" mdbRippleRadius>Acceder</button>
-         
-          <div *ngIf="wrong" class="text-center">  <br><label for="" class="alert alert-danger">Numero Ou Pin Incorrect</label> </div>
-        </div>
-      
-      <!-- <div class="text-center">entered: {{myForm.value}}</div> -->
-  </form><br>
+                  <div class="form-group">
+                        
+                    <input (keydown)="onChange()" type="password" placeholder="pin" id="password" class="form-control" formControlName="pin">
+                    <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                   
+                </div>
+                  <div class="">
+                      <button type="submit" class="btn btn-sm btn-success col-md-12" [disabled]="myForm.invalid" mdbRippleRadius>Acceder</button>
+                     
+                      <div *ngIf="wrong" class="text-center">  <br><label for="" class="alert alert-danger">Numero Ou Pin Incorrect</label> </div>
+                    </div>
+                  
+                  <!-- <div class="text-center">entered: {{myForm.value}}</div> -->
+              </form></div>
  
-  </div>
-  <div class="text-center">
-        <!-- <label for=""  class="alert alert-success"></label> -->
-  </div>
+ 
+</div>
+ 
   
   
  
@@ -72,7 +71,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
   
   
