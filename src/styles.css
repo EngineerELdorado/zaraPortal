@@ -1,3 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-@import "~ngx-toastr/toastr.css"
+@import "~ngx-toastr/toastr.css";
+body{
+    background-image: url("https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+}
