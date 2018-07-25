@@ -19,7 +19,7 @@ import { SendComponent } from './send/send.component';
 import { SettingsComponent } from './settings/settings.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule}from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AddUserComponent } from './add-user/add-user.component';
 import { BoolPipe } from './bool.pipe';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
@@ -29,6 +29,7 @@ import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ChangePinComponent } from './change-pin/change-pin.component';
+import { IsAgentPipe } from './is-agent.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { ChangePinComponent } from './change-pin/change-pin.component';
     BoolPipe,
     UserDetailsComponent,
     VerifyCodeComponent,
-    ChangePinComponent
+    ChangePinComponent,
+    IsAgentPipe
   ],
   imports: [
     BrowserModule,
