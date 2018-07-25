@@ -3,7 +3,7 @@ import { Role } from "../role/Role";
 export interface User{
     id:string,
     accountNumber:string,
-    agentNUmber:string,
+    agentNumber:string,
     fullName:string,
     phone:string,
     balance:number,
