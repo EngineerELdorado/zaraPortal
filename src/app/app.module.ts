@@ -19,7 +19,7 @@ import { SendComponent } from './send/send.component';
 import { SettingsComponent } from './settings/settings.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
 import { BoolPipe } from './bool.pipe';
 import { InternationalPhoneModule } from 'ng4-intl-phone';
@@ -69,7 +69,7 @@ import { IsAgentPipe } from './is-agent.pipe';
     }),
     BrowserAnimationsModule
   ],
-  entryComponents:[SendComponent, AddUserComponent, VerifyCodeComponent,ChangePinComponent],
+  entryComponents: [SendComponent, AddUserComponent, VerifyCodeComponent, ChangePinComponent],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
