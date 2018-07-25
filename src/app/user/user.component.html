@@ -11,7 +11,6 @@
           <th>Nom</th>
           <th>Role</th>
           <th>Tel No</th>
-          <th>Agent?</th>
           <th>Verified</th>
           <th>Balance</th>
           <th>Actions</th>
@@ -21,10 +20,9 @@
         <tr *ngFor="let user of users let i =index">
           <td>{{i+1}}</td>
           <td>{{user.fullName}}</td>
-          <td class="hidden-sm"><label  *ngFor="let role of user.roles"> {{ role?.name |role }} </label> </td>
+          <td class="hidden-sm"><label  *ngFor="let role of user.roles"> {{ role?.name |role }} {{user.agentNUmber}}</label> </td>
 
           <td>+{{user.phone}}</td>
-          <td>{{user.agentNUmber}}</td>
 
           <td>{{user.verified|verified}}</td>
           <td>{{user.balance}}</td>
