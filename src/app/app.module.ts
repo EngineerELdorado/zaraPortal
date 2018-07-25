@@ -29,7 +29,6 @@ import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ChangePinComponent } from './change-pin/change-pin.component';
-import { IsAgentPipe } from './is-agent.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,8 +47,7 @@ import { IsAgentPipe } from './is-agent.pipe';
     BoolPipe,
     UserDetailsComponent,
     VerifyCodeComponent,
-    ChangePinComponent,
-    IsAgentPipe
+    ChangePinComponent
   ],
   imports: [
     BrowserModule,
