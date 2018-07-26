@@ -33,6 +33,7 @@ import { SettingComponent } from './setting/setting.component';
 import { LangPipe } from './lang.pipe';
 import { SettingDetailsComponent } from './setting-details/setting-details.component';
 import { IsAgentPipe } from './is-agent.pipe';
+import { UiSwitchModule } from 'ngx-toggle-switch';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { IsAgentPipe } from './is-agent.pipe';
     AppRoutingModule,
     InternationalPhoneModule,
     RouterModule,
+    UiSwitchModule,
     AngularFontAwesomeModule,
     NgxSpinnerModule,
     NgbModule.forRoot(),

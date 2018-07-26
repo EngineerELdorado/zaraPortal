@@ -62,6 +62,11 @@ export class UserService {
     return this.http.get(this.constants.BACKEND_URL+"/users/resetPin/"+accountNumber,{observe:'response'})
    }
 
-
+   public toggleRoles(accountNumber, role){
+    let params = new HttpParams();
+    params=  params.append("accountNumber", accountNumber);
+    params=  params.append("roleName",role)
+    return this.http.get(this.constants.BACKEND_URL+"/users/addRemoveRoles", {observe:'response', params:params});
+   }
    
 }

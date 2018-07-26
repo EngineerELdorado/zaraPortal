@@ -1,11 +1,11 @@
 <form  autocomplete="false" id="transferForm" class="container text-center"  [formGroup] ="myForm" novalidate (ngSubmit)="post(myForm)" autocomplete="off">
- 
+
 
     <div class="form-group">
-      <label for="receiver">Changer De Pin</label>
+      <label >Changer De Pin</label>
     </div>
     <div class="form-group">
-      <input autocomplete="false"  type="password" placeholder="Pin Actuel"  class="form-control" formControlName="oldPin">
+      <input autocomplete="false"  type="password" placeholder="Ancien Pin"  class="form-control" formControlName="oldPin">
      </div>
     <div class="form-group">
         <input autocomplete="false"  type="password" placeholder="Nouveau Pin"  class="form-control" formControlName="newPin">
@@ -15,8 +15,8 @@
     </div>
     <div class="text-center">
         <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" mdbRippleRadius>Changer De Pin</button>
-      
+
       <br><br></div>
-    
+
     <!-- <div class="text-center">entered: {{myForm.value}}</div> -->
     </form>

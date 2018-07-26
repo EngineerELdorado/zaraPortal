@@ -7,18 +7,18 @@ export class RolePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if(value==="ROLE_SUPERADMIN"){
-      return "Super Admin";
+      return "Super Admin".toUpperCase();
     } else if(value==="ROLE_ADMIN"){
-      return "Admin";
+      return "Admin".toUpperCase();
     }
     else if(value==="ROLE_STAFF"){
-      return "Staff";
+      return "Staff".toUpperCase();
     }else if(value==="ROLE_AGENT"){
-      return "Agent";
+      return "Agent".toUpperCase();
     }else if(value==="ROLE_USER"){
-      return "User";
+      return "User".toUpperCase();
     }else if(value==="ROLE_MASS_PAYER"){
-      return "Mass Payer";
+      return "Mass Payer".toUpperCase();
     }
     return value;
   }

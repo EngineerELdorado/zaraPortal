@@ -8,6 +8,9 @@ import { TransactionsService } from '../transactions.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
+import {RoleService} from '../role.service';
+import {Role} from '../role/Role';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-details',
@@ -15,35 +18,41 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  
+
   userAccountNumber;
-  myForm:FormGroup;
-  isVerified:boolean;
-  isLocked:boolean;
+  myForm: FormGroup;
+  isVerified: boolean;
+  isLocked: boolean;
   needToChangePin:boolean;
-  user:User;
-  transactions:Transaction[];
+  user: User;
+  transactions: Transaction[];
   responseMsg:string;
   lockingMessage;
+  roles: Role[];
   constructor(
     private modalService: NgbModal,
-    private toastr: ToastrService,private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService, private activatedRoute: ActivatedRoute,
      private transactionService:TransactionsService,
+     private rolesService: RoleService,
      private userService:UserService) { }
 
   ngOnInit() {
+
+
     this.activatedRoute.params.subscribe(params=>{
       this.userAccountNumber = params['id'];
-     
+
       this.myForm= new FormGroup({
         fullName:new FormControl('', Validators.required),
         phone:new FormControl({value: '', disabled: true}, Validators.required),
-        
+
       });
 
       this.getUser();
+      this.getRoles();
 
-      
+
     })
   }
 
@@ -60,30 +69,36 @@ export class UserDetailsComponent implements OnInit {
       this.transactionService.getMiniStatement(this.user.id).subscribe(res=>{
         this.transactions=res.body
       });
-      
-      
-      
+
+
+
       console.log(this.user)
     })
   }
   openSm(content) {
-    
+
     this.modalService.open(content, { size: 'sm' });
   }
   block()
 {
    this.userService.blockUser(this.user.accountNumber, localStorage.getItem("phone")).subscribe(res=>{
-    
+
     this.responseMsg= res.headers.get("response_message")
     this.showSuccess();
    },
   (err)=>{
     this.responseMsg=err.headers.get("response_message")
     this.showError();
-  })
+  });
+
+
 }
 
-
+getRoles(){
+    this.rolesService.getAll().subscribe(res=>{
+      this.roles=res.body;
+    })
+}
 
 update(myform:FormGroup){
      this.userService.updateUser(myform.value, this.user.accountNumber).subscribe(res=>{
@@ -115,7 +130,25 @@ showError() {
 }
 
 onChange(){
-  
+
+}
+
+onRoleChange(event, role){
+  this.spinner.show();
+ this.userService.toggleRoles(this.user.accountNumber, role).subscribe(res=>{
+   this.responseMsg=res.headers.get("response_message");
+   this.spinner.hide();
+   this.showSuccess();
+ }, (err:HttpErrorResponse)=>{
+  this.responseMsg="ECHEC";
+  this.spinner.hide();
+  this.showSuccess();
+  console.log(err)
+ })
+}
+
+openRoleModal(content){
+this.modalService.open(content);
 }
 
 }

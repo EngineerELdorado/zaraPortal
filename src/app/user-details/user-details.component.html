@@ -6,13 +6,13 @@
   <label *ngIf="isVerified" class="alert alert-success">Numero VerifiE</label><label *ngIf="!isVerified" class="alert alert-warning">Numero non verifiE.</label>
   <label class="alert alert-primary" *ngIf="!isVerified">Code de verification: {{user?.verificationCode}}</label>
   <label *ngIf="!isLocked" class="alert alert-success">Compte Actif</label> <label *ngIf="isLocked" class="alert alert-danger">Compte A EtE BloquE</label>
-   <br><label class="alert alert-warning" *ngIf="needToChangePin">Doit Changer De Pin</label> 
-  <label class="alert alert-primary" *ngIf="needToChangePin">Pin Temporaire: {{user.tempPin}}</label>  
+   <br><label class="alert alert-warning" *ngIf="needToChangePin">Doit Changer De Pin</label>
+  <label class="alert alert-primary" *ngIf="needToChangePin">Pin Temporaire: {{user.tempPin}}</label>
 </div>
 
 <div class="col-md-6 block container">
     <h5>Transactions Recentes</h5>
-    
+
     <div class="container">
         <!-- <button class="btn btn-success " (click)="getUsers()">Refresh Users</button> -->
         <div class="table-responsive">
@@ -31,7 +31,7 @@
                 <td>{{transaction.createdBy.fullName}}</td>
                 <td>{{transaction.receiver.fullName}}</td>
                 <td>{{transaction.amount}} $</td>
-                
+
               </tr>
             </tbody>
           </table>
@@ -42,7 +42,7 @@
     <h5>Proprietaire Du Compte</h5>
     <form (change)="onChange()" autocomplete="false" id="transferForm" class="container text-center"  [formGroup] ="myForm" novalidate (ngSubmit)="update(myForm)" autocomplete="off">
         <div class="row">
-        
+
               <div class="form-group col-md-12">
                   <input type="text" placeholder="FullName" class="form-control" formControlName="fullName">
                </div>
@@ -53,8 +53,12 @@
                <div class="form-group col-md-12">
                  <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" >Mettre A Jour</button>
                </div>
-        </div>  
+             
+        </div>
         </form>
+        <div class="text-center">
+            <button  class="btn btn-default" (click)="openRoleModal(contentRole)" >Gerer Ses Roles</button>
+          </div>
 </div>
 </div>
 <br>
@@ -63,11 +67,14 @@
   <button *ngIf="!isLocked" class="btn btn-danger" (click)="openSm(content)">Bloquer ce compte</button>
   <button *ngIf="isLocked" class="btn btn-warning" (click)="openSm(content)">Debloquer ce compte</button>
 </div>
+
 </div>
+
+
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Avertissement</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <button type="button" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -77,6 +84,27 @@
     </div>
     <div style="margin: 5px" class="modal-footer text-center row">
       <button  type="button" class="btn btn-primary col-md-12 col-sm-12 col-xs-12" (click)="block()">Je Confirme</button>
-      
+
     </div>
   </ng-template>
+
+
+  <ng-template #contentRole let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Ajouter Ou Retirer Un Le Role</h4>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="container">
+              <div class="" *ngFor="let role of roles">
+                <label for="">{{role.name}}</label> <ui-switch (change)="onRoleChange($event, role.name)"></ui-switch>
+              </div>
+             
+            </div> 
+      </div>
+      <div style="margin: 5px" class="modal-footer text-center row">
+       
+      </div>
+    </ng-template>
