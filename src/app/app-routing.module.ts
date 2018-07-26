@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SendComponent } from './send/send.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AuthGuard } from './auth.guard';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
     path:'send',
     canActivate:[AuthGuard],
     component:SendComponent
+  },{
+    path:'settings',
+    canActivate:[AuthGuard],
+    component:SettingsComponent
   }
 ];
 

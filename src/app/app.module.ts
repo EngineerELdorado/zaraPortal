@@ -29,6 +29,9 @@ import { AuthGuard } from './auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ChangePinComponent } from './change-pin/change-pin.component';
+import { SettingComponent } from './setting/setting.component';
+import { LangPipe } from './lang.pipe';
+import { SettingDetailsComponent } from './setting-details/setting-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +50,10 @@ import { ChangePinComponent } from './change-pin/change-pin.component';
     BoolPipe,
     UserDetailsComponent,
     VerifyCodeComponent,
-    ChangePinComponent
+    ChangePinComponent,
+    SettingComponent,
+    LangPipe,
+    SettingDetailsComponent
   ],
   imports: [
     BrowserModule,
