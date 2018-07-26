@@ -15,7 +15,7 @@
       <tbody>
         <tr *ngFor="let setting of settings let i =index">
           <td>{{i+1}}</td>
-          <td>{{setting.name}}</td>
+          <td>{{setting?.name}}</td>
           <td>
               <button (click)="open(content, setting)"  class="btn btn-sm btn-info waves-light" >Voir Les Details</button>
           </td>
@@ -28,7 +28,7 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-  <div class="text-center"><h4 class="modal-title" id="modal-basic-title">{{setting.name}}</h4></div>  
+  <div class="text-center"><h4 class="modal-title" id="modal-basic-title">{{setting?.name}}</h4></div>  
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -36,32 +36,32 @@
   <div class="modal-body">
     <div for="" class="row">
       <div class="col"><label for="" >System Name : </label> </div>
-      <div class="col"> <button type="button" class="btn btn-primary "> <span class="badge">{{setting.systemName}} </span></button>
+      <div class="col"> <button type="button" class="btn btn-primary "> <span class="badge">{{setting?.systemName}} </span></button>
       </div>
      
     </div>
     <br>
     <div for="" class="row">
       <div class="col"><label for="" class="">Langue Par Defaut : </label> </div>
-      <div class="col"><button type="button" class="btn btn-primary "><span class="badge">{{setting.defaultLanguage}}</span></button>
+      <div class="col"><button type="button" class="btn btn-primary "><span class="badge">{{setting?.defaultLanguage}}</span></button>
       </div>
       
     </div>
     <br>
     <div for="" class="row">
-      <div class="col"><label for="">Pourcentage de commission par transaction :</label></div>
-      <div class="col"><button type="button" class="btn btn-primary "><span class="badge"> {{setting.commissionPercentage}} %</span></button>
+      <div class="col"><label for="">commission par transaction :</label></div>
+      <div class="col"><button type="button" class="btn btn-primary "><span class="badge"> {{setting?.commissionPercentage}} %</span></button>
       </div>
       
     </div>
     <br>
     <div for="" class="row">
-      <div class="col"><label for="">Pourcentage de tax par transaction : </label></div>
-      <div class="col"><button type="button" class="btn btn-primary "><span class="badge">{{setting.taxPercentage}} %</span></button>
+      <div class="col"><label for="">tax par transaction : </label></div>
+      <div class="col"><button type="button" class="btn btn-primary "><span class="badge">{{setting?.taxPercentage}} %</span></button>
       </div>
       
     </div><br>
-    <div class="row" *ngIf="setting.smsEnabled" for="">
+    <div class="row" *ngIf="smsEnabled" for="">
       <div class="col"><label for="">SMS : </label></div>
       <div class="col">
           <button type="button" class="btn btn-primary"><span class="badge">activE</span>
@@ -69,10 +69,10 @@
         </div>
     
     </div>
-    <div class="row" *ngIf="!setting.smsEnabled" for="">
+    <div class="row" *ngIf="!smsEnabled" for="">
         <div class="col"><label for="">SMS : </label></div>
         <div class="col">
-            <button type="button" class="btn btn-success"><span class="badge">DesactivE</span>
+            <button type="button" class="btn btn-danger"><span class="badge">DesactivE</span>
             </button>
           </div>
        
@@ -80,15 +80,15 @@
       <div class="row text-center">
         <br>
         <div class="col">
-            <div *ngIf="setting.smsEnabled"  class="col"><button class="btn btn-sm btn-default"  (click)="toggleSms(setting.id)">Desactiver Les Sms</button></div>
-            <div *ngIf="!setting.smsEnabled"  class="col"><button class="btn btn-sm btn-default" (click)="toggleSms(setting.id)">Activer Les Sms</button></div>
-        
+            
   
         </div>
       </div>
     
   </div>
-  <!-- <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-  </div> -->
+  <div class="modal-footer">
+      <div *ngIf="smsEnabled"  ><button class="btn btn-outline-dark"  (click)="toggleSms(setting.id)">Desactiver Les Sms</button></div>
+      <div *ngIf="!smsEnabled"  ><button class="btn btn-outline-dark" (click)="toggleSms(setting.id)">Activer Les Sms</button></div>
+
+  </div>
 </ng-template>

@@ -16,6 +16,7 @@ export class SettingsComponent implements OnInit {
   settings:Setting[];
   setting:Setting;
   responseMsg:string;
+  smsEnabled:boolean;
   constructor(private settingsService: SettingService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -38,13 +39,21 @@ export class SettingsComponent implements OnInit {
   open(content, set:Setting){
 
     this.setting=set;
+    this.smsEnabled=this.setting.smsEnabled;
     this.modalService.open(content);
   }
 
   toggleSms(id, content){
     this.spinner.show();
     this.settingsService.toggle(id).subscribe(res=>{
-      //this.setting=res.body;
+      this.c('')
+      this.getData();
+      
+      if(res.body!==null){
+        this.setting = res.body;
+        this.smsEnabled=this.setting.smsEnabled
+      }
+      
       this.responseMsg=res.headers.get("response_message");
       this.showSuccess();
       
@@ -63,6 +72,9 @@ export class SettingsComponent implements OnInit {
   showError() {
     this.spinner.hide();
     this.toastr.error(this.responseMsg, 'ECHEC');
+  }
+  c(any:any){
+
   }
   
 }
