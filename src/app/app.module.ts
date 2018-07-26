@@ -32,6 +32,7 @@ import { ChangePinComponent } from './change-pin/change-pin.component';
 import { SettingComponent } from './setting/setting.component';
 import { LangPipe } from './lang.pipe';
 import { SettingDetailsComponent } from './setting-details/setting-details.component';
+import { IsAgentPipe } from './is-agent.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { SettingDetailsComponent } from './setting-details/setting-details.compo
     ChangePinComponent,
     SettingComponent,
     LangPipe,
+    IsAgentPipe,
     SettingDetailsComponent
   ],
   imports: [
